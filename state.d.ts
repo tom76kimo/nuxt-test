@@ -1,3 +1,5 @@
-interface State {
-    isOnEditing: boolean;
+interface EditorState {
+  isOnEditing: boolean;
 }
+
+interface State extends EditorState {}

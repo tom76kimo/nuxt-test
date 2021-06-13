@@ -1,7 +1,3 @@
-export const state = (): State => ({
-    isOnEditing: false
-})
+export const state = (): any => ({});
 
-export const mutations = {
-
-};
+export const mutations = {};

@@ -1,46 +1,39 @@
 <template>
-  <div class="editable" @click="onClick" :class="{active: isOnEdit}" @blur="onBlur"></div>
+  <div
+    class="editable"
+    @click.stop="onClick"
+    :class="{ active: isOnEditing }"
+  ></div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
 
 export default Vue.extend({
   data() {
-    return {
-        isOnEdit: false
-    }
+    return {};
   },
   methods: {
     onClick() {
-        this.isOnEdit = true;
-    },
-    onBlur() {
-        this.isOnEdit = false;
+      this.$store.commit("editor/setOnEditing", { isOnEditing: true });
     }
   },
-  watch: {
-      isOnEditable(oldVal, newVal) {
-          this.isOnEdit = newVal;
-      }
-  },
   computed: {
-      isOnEditing() {
-          return this.$store.state.isOnEditing
-      }
+    isOnEditing() {
+      return this.$store.state.editor.isOnEditing;
+    }
   }
-})
+});
 </script>
 
 <style scoped>
-
 .editable {
-    height: 30px;
-    cursor: text;
-    width: 100%;
+  height: 30px;
+  cursor: text;
+  width: 100%;
 }
 
 .active {
-    background: #aaa;
+  background: #aaa;
 }
 </style>
