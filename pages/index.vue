@@ -1,21 +1,23 @@
 <template>
   <div class="container">
     <div class="sidebar"></div>
-    <div class="article-list"></div>
+    <div class="article-list">
+      <ArticleList />
+    </div>
     <Editor class="editor" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
   data() {
     return {
-      name: 'Tom'
-    }
+      name: "Tom"
+    };
   }
-})
+});
 </script>
 
 <style scoped>
@@ -29,19 +31,20 @@ export default Vue.extend({
 }
 
 .sidebar {
-  flex: 1;
+  flex: 0;
+  flex-basis: 50px;
   background: green;
   min-height: 100vh;
 }
 
 .article-list {
-  flex: 2;
-  background: gray;
+  flex: 0;
+  flex-basis: 150px;
   min-height: 100vh;
 }
 
 .editor {
-  flex: 10;
+  flex: 1;
   min-height: 100vh;
 }
 </style>

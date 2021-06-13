@@ -1,10 +1,13 @@
 <template>
-  <div class="editor-container" @click="cleanupEditingState">
+  <div
+    contenteditable="true"
+    class="editor-container"
+    @click="cleanupEditingState"
+  >
     <div class="editor-main">
-      <div>adsf</div>
-      <div>123</div>
-      <div>adsfadsfef</div>
-      <Editable isOnEditable="isOnEditable" />
+      <div v-for="article in articleList" :key="article.id">
+        {{ article.title }}
+      </div>
     </div>
   </div>
 </template>
@@ -16,11 +19,8 @@ export default Vue.extend({
   data() {
     return {};
   },
-  methods: {
-    cleanupEditingState() {
-      this.$store.commit("editor/setOnEditing", { isOnEditing: false });
-    }
-  }
+  methods: {},
+  computed: {}
 });
 </script>
 
@@ -29,6 +29,8 @@ export default Vue.extend({
   margin: 0 auto;
   padding: 50px 10%;
   box-sizing: border-box;
+  background-color: #fbfbfb;
+  outline: none;
 }
 
 .editor-main {
