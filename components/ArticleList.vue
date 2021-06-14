@@ -1,6 +1,11 @@
 <template>
   <ul class="article-list">
-    <li class="article active" v-for="a in articleList" :key="a.id">
+    <li
+      :class="{ article: true, active: currentIndex == i }"
+      v-for="(a, i) in articleList"
+      :key="a.id"
+      @click.stop="onSelect(i)"
+    >
       <div class="single-article-container">
         <span class="article-title">{{ a.title }}</span>
         <span
@@ -14,11 +19,25 @@
   </ul>
 </template>
 <script lang="ts">
+interface Data {
+  currentIndex: number;
+}
 import Vue from "vue";
 export default Vue.extend({
+  data() {
+    return {};
+  },
   computed: {
     articleList() {
       return this.$store.state.articles.list;
+    },
+    currentIndex(): number {
+      return this.$store.state.articles.currentIndex;
+    }
+  },
+  methods: {
+    onSelect(i: number) {
+      this.$store.commit("articles/setCurrentIndex", i);
     }
   }
 });

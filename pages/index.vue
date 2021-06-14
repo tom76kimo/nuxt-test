@@ -33,7 +33,7 @@ export default Vue.extend({
 .sidebar {
   flex: 0 0;
   flex-basis: 50px;
-  background: green;
+  background: black;
   min-height: 100vh;
 }
 
