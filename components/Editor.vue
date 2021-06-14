@@ -1,14 +1,6 @@
 <template>
-  <div
-    contenteditable="true"
-    class="editor-container"
-    @click="cleanupEditingState"
-  >
-    <div class="editor-main">
-      <div v-for="article in articleList" :key="article.id">
-        {{ article.title }}
-      </div>
-    </div>
+  <div contenteditable="true" class="editor-container">
+    <div class="editor-main"></div>
   </div>
 </template>
 

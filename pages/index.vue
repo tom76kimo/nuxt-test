@@ -31,20 +31,27 @@ export default Vue.extend({
 }
 
 .sidebar {
-  flex: 0;
+  flex: 0 0;
   flex-basis: 50px;
   background: green;
   min-height: 100vh;
 }
 
 .article-list {
-  flex: 0;
+  flex: 0 0;
+  width: 150px;
   flex-basis: 150px;
   min-height: 100vh;
 }
 
 .editor {
-  flex: 1;
+  flex: 1 1;
   min-height: 100vh;
+}
+</style>
+
+<style>
+html {
+  font-size: 12px;
 }
 </style>

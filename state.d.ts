@@ -2,4 +2,12 @@ type EditorState = {
   isOnEditing: boolean;
 };
 
-type State = {} & EditorState;
+type Article = {
+  id: string;
+  title: string;
+  content: string[];
+};
+
+type State = {
+  articleList: Article[];
+} & EditorState;

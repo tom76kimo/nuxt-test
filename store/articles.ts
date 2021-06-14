@@ -6,10 +6,11 @@ import { Module, VuexModule, Mutation } from "vuex-module-decorators";
   namespaced: true
 })
 class Articles extends VuexModule {
-  list = [
+  list: Article[] = [
     {
       id: "123456",
-      title: "今日進度"
+      title: "今日進度",
+      content: ["今天做了 xxxxx", "跟 bbb 一起看 bug"]
     }
   ];
 
