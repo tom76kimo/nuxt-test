@@ -8,12 +8,7 @@
     >
       <div class="single-article-container">
         <span class="article-title">{{ a.title }}</span>
-        <span
-          class="article-content-glance"
-          v-for="c in a.content.slice(0, 2)"
-          :key="c"
-          >{{ c }}</span
-        >
+        <span class="article-content-glance">{{ a.content }}</span>
       </div>
     </li>
   </ul>

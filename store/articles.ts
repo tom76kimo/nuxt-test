@@ -10,12 +10,12 @@ class Articles extends VuexModule {
     {
       id: "123456",
       title: "今日進度",
-      content: ["今天做了 xxxxx", "跟 bbb 一起看 bug"]
+      content: "<p>I’m running tiptap with Vue.js. 🎉</p>"
     },
     {
       id: "4568789",
       title: "煮菜食譜",
-      content: ["先加一勺醬油，再加入寬油，越多越好", "將油溫燒到六成熱"]
+      content: ""
     }
   ];
 
@@ -27,6 +27,25 @@ class Articles extends VuexModule {
   @Mutation
   setCurrentIndex(index: number) {
     this.currentIndex = index;
+  }
+
+  @Mutation
+  updateCurrentArticle({ content }: { content: string }) {
+    const article = this.list[this.currentIndex] || {};
+    article.content = content;
+  }
+
+  get currentArticle() {
+    return this.list[this.currentIndex] || {};
+  }
+
+  get currentArticleContent() {
+    return this.list[this.currentIndex]?.content ?? "";
+  }
+
+  get computedCurrentArticleContent() {
+    const content = this.list[this.currentIndex]?.content ?? "";
+    return content[0].replaceAll("\n", "<br />");
   }
 }
 
