@@ -27,7 +27,7 @@ class Articles extends VuexModule {
   }
 
   @Mutation
-  updateCurrentArticle({ content }: { content: string }) {
+  updateCurrentArticle(content: any[]) {
     const article = this.list[this.currentIndex] || {};
     article.content = content;
   }
@@ -38,8 +38,8 @@ class Articles extends VuexModule {
       ...this.list,
       {
         id: new Date().getTime(),
-        content: 'asdf',
-        title: 'Adsf'
+        content: '',
+        title: ''
       }
     ];
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newList));

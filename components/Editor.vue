@@ -72,14 +72,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-h1 {
-  margin-bottom: 30px;
-}
 .editor-container {
   margin: 0 auto;
   padding: 30px 10%;
   box-sizing: border-box;
-  background-color: #fbfbfb;
+
   outline: none;
   text-align: left;
 }
@@ -98,5 +95,16 @@ h1 {
   padding: 30px 10%;
   box-sizing: border-box;
   height: 100vh;
+  background-color: #fbfbfb;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+pre {
+  background-color: #fff;
+  padding: 4px 6px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
 }
 </style>

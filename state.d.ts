@@ -5,7 +5,7 @@ type EditorState = {
 type Article = {
   id: string;
   title: string;
-  content: string;
+  content: string | any[];
 };
 
 type State = {
