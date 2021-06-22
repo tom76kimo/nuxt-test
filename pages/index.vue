@@ -2,6 +2,7 @@
   <div class="container">
     <div class="sidebar"></div>
     <div class="article-list">
+      <ToolBar />
       <ArticleList />
     </div>
     <Editor class="editor" />
@@ -9,13 +10,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 
 export default Vue.extend({
   data() {
-    return {
-      name: "Tom"
-    };
+    return {};
+  },
+  async asyncData(context) {},
+  mounted() {
+    this.$store.dispatch('articles/fetchArticles');
   }
 });
 </script>
@@ -42,6 +45,8 @@ export default Vue.extend({
   width: 150px;
   flex-basis: 150px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .editor {

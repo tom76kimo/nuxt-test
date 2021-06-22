@@ -1,5 +1,5 @@
 <template>
-  <ul class="article-list">
+  <ul class="article-list-main">
     <li
       :class="{ article: true, active: currentIndex == i }"
       v-for="(a, i) in articleList"
@@ -38,10 +38,11 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
-.article-list {
+.article-list-main {
   border-right: 1px solid #dedede;
-  background: #fbfbfb;
+  background-color: #fbfbfb;
   padding: 0;
+  height: calc(100vh - 40px);
 }
 .article {
   cursor: pointer;

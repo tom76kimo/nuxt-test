@@ -3,25 +3,29 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { mapGetters } from "vuex";
-import _debounce from "lodash/debounce";
-import { Editor, EditorContent } from "@tiptap/vue-2";
-import StarterKit from "@tiptap/starter-kit";
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
+import _debounce from 'lodash/debounce';
+import { Editor, EditorContent } from '@tiptap/vue-2';
+import StarterKit from '@tiptap/starter-kit';
 
-type CommitFunction = (commitName: string, payload: any) => any;
+type CommitFunction = (commitName: string, payload: any) => void;
 type StoreType = {
   commit: CommitFunction;
+  dispatch: CommitFunction;
 };
 
-function initializeEditor(currentArticleContent: string, $store: StoreType) {
+function initializeEditor(
+  currentArticleContent: string,
+  $store: StoreType
+): Editor {
   return new Editor({
     content: currentArticleContent,
     extensions: [StarterKit],
     onUpdate: _debounce(({ editor }) => {
       // The content has changed.
       const json = editor.getJSON();
-      $store.commit("articles/updateCurrentArticle", { content: json });
+      $store.dispatch('articles/updateCurrentArticleAction', { content: json });
     }, 500)
   });
 }
@@ -45,12 +49,13 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters({
-      currentArticle: "articles/currentArticle",
-      currentArticleContent: "articles/currentArticleContent"
+      currentArticle: 'articles/currentArticle',
+      currentArticleContent: 'articles/currentArticleContent'
     })
   },
   beforeDestroy() {
-    this.$data.editor.destroy();
+    const editorInstance = this.$data.editor;
+    editorInstance && editorInstance.destroy();
   },
   watch: {
     currentArticle(article, oldArticle) {

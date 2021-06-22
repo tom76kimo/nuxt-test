@@ -1,28 +1,25 @@
-import { Module, VuexModule, Mutation } from "vuex-module-decorators";
+import { Action, Module, VuexModule, Mutation } from 'vuex-module-decorators';
+
+const LOCAL_STORAGE_KEY = 'bear:articles';
 
 @Module({
-  name: "articles",
   stateFactory: true,
   namespaced: true
 })
 class Articles extends VuexModule {
-  list: Article[] = [
-    {
-      id: "123456",
-      title: "今日進度",
-      content: "<p>I’m running tiptap with Vue.js. 🎉</p>"
-    },
-    {
-      id: "4568789",
-      title: "煮菜食譜",
-      content: ""
-    }
-  ];
+  list: Article[] = [];
 
   currentIndex = 0;
 
   @Mutation
-  addArticle() {}
+  addArticle(newList: Article[]) {
+    this.list = newList;
+  }
+
+  @Mutation
+  setArticles(articles: Article[]) {
+    this.list = articles;
+  }
 
   @Mutation
   setCurrentIndex(index: number) {
@@ -35,17 +32,54 @@ class Articles extends VuexModule {
     article.content = content;
   }
 
+  @Action({ commit: 'addArticle' })
+  addArticleAction() {
+    const newList = [
+      ...this.list,
+      {
+        id: new Date().getTime(),
+        content: 'asdf',
+        title: 'Adsf'
+      }
+    ];
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newList));
+    return newList;
+  }
+
+  @Action({ commit: 'updateCurrentArticle' })
+  updateCurrentArticleAction({ content }: { content: any[] }) {
+    const newList = [
+      ...this.list.slice(0, this.currentIndex),
+      { ...this.list[this.currentIndex], content: content },
+      ...this.list.slice(this.currentIndex + 1)
+    ];
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newList));
+    return content;
+  }
+
+  @Action({ commit: 'setArticles', rawError: true })
+  fetchArticles() {
+    const articleList = localStorage.getItem(LOCAL_STORAGE_KEY) || '[]';
+    let data = [];
+    try {
+      data = JSON.parse(articleList);
+    } catch {
+      data = [];
+    }
+    return data;
+  }
+
   get currentArticle() {
     return this.list[this.currentIndex] || {};
   }
 
   get currentArticleContent() {
-    return this.list[this.currentIndex]?.content ?? "";
+    return this.list[this.currentIndex]?.content ?? '';
   }
 
   get computedCurrentArticleContent() {
-    const content = this.list[this.currentIndex]?.content ?? "";
-    return content[0].replaceAll("\n", "<br />");
+    const content = this.list[this.currentIndex]?.content ?? '';
+    return content[0].replaceAll('\n', '<br />');
   }
 }
 
