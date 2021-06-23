@@ -8,23 +8,21 @@
     >
       <div class="single-article-container">
         <span class="article-title">{{ a.title }}</span>
-        <span class="article-content-glance">{{ a.content }}</span>
+        <span class="article-content-glance">{{ findContent(a.content) }}</span>
       </div>
     </li>
   </ul>
 </template>
 <script lang="ts">
-interface Data {
-  currentIndex: number;
-}
-import Vue from "vue";
+import Vue from 'vue';
 export default Vue.extend({
   data() {
     return {};
   },
   computed: {
     articleList() {
-      return this.$store.state.articles.list;
+      const articleList = this.$store.state.articles.list;
+      return articleList;
     },
     currentIndex(): number {
       return this.$store.state.articles.currentIndex;
@@ -32,7 +30,15 @@ export default Vue.extend({
   },
   methods: {
     onSelect(i: number) {
-      this.$store.commit("articles/setCurrentIndex", i);
+      this.$store.commit('articles/setCurrentIndex', i);
+    },
+    findContent(content: { content?: object[] }) {
+      let finalContent: any = content;
+      while (finalContent.content && Array.isArray(finalContent.content)) {
+        finalContent = finalContent.content[0];
+      }
+      // Don't show the json structure when no `text` presented.
+      return finalContent.text ? finalContent.text : '';
     }
   }
 });
