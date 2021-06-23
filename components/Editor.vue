@@ -100,7 +100,7 @@ export default Vue.extend({
   text-align: left;
   padding: 30px 10%;
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fbfbfb;
 }
 

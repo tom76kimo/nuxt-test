@@ -31,6 +31,8 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   text-align: center;
+  max-width: 780px;
+  background-color: #dedede;
 }
 
 .sidebar {
