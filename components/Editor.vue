@@ -8,6 +8,11 @@ import { mapGetters } from 'vuex';
 import _debounce from 'lodash/debounce';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faPlusCircle);
 
 type CommitFunction = (commitName: string, payload: any) => void;
 type StoreType = {
@@ -32,7 +37,8 @@ function initializeEditor(
 
 export default Vue.extend({
   components: {
-    EditorContent
+    EditorContent,
+    'font-awesome-icon': FontAwesomeIcon
   },
   created() {},
   data() {
