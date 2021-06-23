@@ -34,13 +34,15 @@ class Articles extends VuexModule {
 
   @Action({ commit: 'addArticle' })
   addArticleAction() {
+    const createTime = new Date().getTime();
     const newList = [
-      ...this.list,
       {
-        id: new Date().getTime(),
         content: '',
+        createTime,
+        id: createTime,
         title: ''
-      }
+      },
+      ...this.list
     ];
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newList));
     return newList;
