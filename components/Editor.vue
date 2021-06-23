@@ -107,10 +107,20 @@ export default Vue.extend({
 h1 {
   margin-bottom: 30px;
 }
-pre {
+pre,
+code {
   background-color: #fff;
   padding: 4px 6px;
   border: 1px solid #dddddd;
   border-radius: 2px;
+}
+
+pre > code {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+li::marker {
+  color: #d6555f;
 }
 </style>
