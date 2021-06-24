@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { mapGetters } from 'vuex';
 import _debounce from 'lodash/debounce';
 import { Editor, EditorContent } from '@tiptap/vue-2';
-import StarterKit from '@tiptap/starter-kit';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { mapGetters } from 'vuex';
+import StarterKit from '@tiptap/starter-kit';
+import Vue from 'vue';
 
 library.add(faPlusCircle);
 
@@ -106,6 +106,18 @@ export default Vue.extend({
 
 h1 {
   margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+.editor h1:first-child::after {
+  display: block;
+  color: #b4b4b4;
+  content: 'H1';
+  position: absolute;
+  font-size: 0.8em;
+  left: -1.5em;
 }
 pre,
 code {
